@@ -1,7 +1,7 @@
 # MileWorks-Auth - 基于OAuth2 \ JWT 认证授权模块  
-研究现有基于Spring Cloud框架研究一段时间之后，其中整个框架的系统认证、授权模块是其中一大核心功功能模块。在前后端分离之后，这个功能在整个系统中是可以单独剥离，并且可以独立运行。决定了整个系统资源使用、API调用的权限使用等等问题。
+在研究Spring Cloud 框架一段时间之后，整个框架的系统认证、授权模块是其中一大核心功功能模块。在前后端分离之后，这个功能在整个系统中是可以单独剥离，并且可以独立运行。决定了整个系统资源使用、API调用的权限使用等等问题。
 
-整理这套东西前期是研究了很多对应文章和代码之后总结的一套，并且是可以复用到任何微服务功能中去。
+整理这套东西是基于前期研究了很多文章和代码之后总结的一套，并且是可以复用到任何微服务功能中去。
 
 前期研究有代表性文章：
 - [https://www.renren.io/guide](https://www.renren.io/guide)
@@ -66,3 +66,39 @@ MileWorks-Auth
 - 配置基于角色的认证资源服务器，比如：
   * 只有用户角色是ADMIN 能请求创建poll接口
   * 只有用户角色是USER 能投票
+
+注意：项目相关注解不再一一解释，自行找百度君。
+
+### 针对系统中关键部门做解释：
+1. SecurityConfig : 整个工程的安全配置类  
+   其中几个用到的关键注解和类：  
+
+   * @EnableWebSecurity - 开启 web security 功能 
+  
+   * @EnableGlobalMethodSecurity - 方法级别的安全配置  
+        securedEnabled ：针对controller/service  
+        jsr250Enabled : 针对角色  
+        prePostEnabled : 复杂表达式  
+
+   * WebSecurityConfigurerAdapter:
+        实现spring security中WebSecurityConfigurer接口，通过实现这个接口，能自定义访问授权等。
+
+   * CustomUserDetailsService：
+        用于授权当前角色用户拥有的操作。
+
+   * JwtAuthenticationEntryPoint：
+        处理401 错误。
+
+   * JwtAuthenticationFilter：  
+        1. 从请求`Authorization header`头部读取JWT授权token信息。  
+        2. 验证token。
+        3. 通过token来过去用户详情信息。
+        4. 保存用户详细信息到`SecurityContext`，能进行认证检查，然后能在controller 中的业务逻辑中使用。
+   
+    * AuthenticationManagerBuilder 和 AuthenticationManager: 
+        1. `AuthenticationManagerBuilder`用于创建`AuthenticationManager`实例来针对用户鉴权。
+        2. `AuthenticationManagerBuilder`能针对内存、LDAP、JDBC、自定义方式的鉴权。
+        3. `AuthenticationManager`用于在登陆的时候针对用户进行授权。在这里使用自定义方式`customUserDetailsService` 和 `passwordEncoder`。
+
+    * HttpSecurity :
+        针对`csrf` 、`sessionManagement` 、资源访问 。同时关联`JWTAuthenticationEntryPoint`和`JWTAuthenticationFilter`

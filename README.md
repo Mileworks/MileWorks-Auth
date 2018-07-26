@@ -19,3 +19,38 @@
 
 
 现在针对现有工程进行说明解释：
+- 系统结构如下：
+```
+MileWorks-Auth
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─mileworks
+│  │  │          └─authsys
+│  │  │              ├─config : Oauth相关配置
+│  │  │              ├─controller : API 入口
+│  │  │              ├─exception
+│  │  │              ├─model
+│  │  │              │  └─audit
+│  │  │              ├─payload : 数据传输相关
+│  │  │              ├─repository
+│  │  │              ├─security : JWT 和 Oauth相关业务等处理
+│  │  │              ├─service
+│  │  │              └─util 
+│  │  └─resources : 资源配置相关
+│  │      ├─db
+│  │      └─static
+│  │          └─static
+│  │              ├─css
+│  │              ├─js
+│  │              └─media
+│  └─test
+│      └─java
+│          └─com
+│              └─mileworks
+│                  └─authsys
+
+```
+
+针对每块核心功能做详细介绍:

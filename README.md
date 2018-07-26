@@ -80,14 +80,14 @@ MileWorks-Auth
         jsr250Enabled : 针对角色  
         prePostEnabled : 复杂表达式  
 
-   * WebSecurityConfigurerAdapter:
+   * WebSecurityConfigurerAdapter:  
         实现spring security中WebSecurityConfigurer接口，通过实现这个接口，能自定义访问授权等。
 
-   * CustomUserDetailsService：
+   * CustomUserDetailsService：  
         用于授权当前角色用户拥有的操作。
 
-   * JwtAuthenticationEntryPoint：
-        处理401 错误。
+   * JwtAuthenticationEntryPoint：  
+        实现`AuthenticationEntryPoint `接口实现`commence()`方法。用于处理401 错误。
 
    * JwtAuthenticationFilter：  
         1. 从请求`Authorization header`头部读取JWT授权token信息。  
@@ -100,5 +100,23 @@ MileWorks-Auth
         2. `AuthenticationManagerBuilder`能针对内存、LDAP、JDBC、自定义方式的鉴权。
         3. `AuthenticationManager`用于在登陆的时候针对用户进行授权。在这里使用自定义方式`customUserDetailsService` 和 `passwordEncoder`。
 
-    * HttpSecurity :
-        针对`csrf` 、`sessionManagement` 、资源访问 。同时关联`JWTAuthenticationEntryPoint`和`JWTAuthenticationFilter`
+    * HttpSecurity :    
+        针对`csrf` 、`sessionManagement` 、资源访问 。同时关联`JWTAuthenticationEntryPoint`和`JWTAuthenticationFilter`。  
+
+    * UserPrincipal :  
+        自定义UserDetails类，用于配合`UserDetailsService`类，来处理认证和授权操作。  
+    
+    * CustomUserDetailsService :  
+        自定义UserDetailsService 类，让用户能通过用户名/邮箱来获取用户信息。
+    
+    * JwtTokenProvider :
+        JWT工具类用于当用户登陆成功之后，验证在`Authorization header`中的JWT信息。  
+        其中 JWT secret 和 expiration time在配置文件中。  
+
+    * CurrentUser :  
+        表明当前是已经授权的用户。  
+    
+
+### 测试对应的API ：  
+- SignUp :
+- Login

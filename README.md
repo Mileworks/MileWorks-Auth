@@ -10,3 +10,12 @@
 
 主流现在包括Java 、Go 语言中涉及Token相关的问题都会于JWT相关联处理。针对JWT相关的教程参考如下：  
 -  [https://www.jdon.com/artichect/json-web-tokens.html](https://www.jdon.com/artichect/json-web-tokens.html)
+
+大致流程如下：
+![avatar](https://user-images.githubusercontent.com/1064859/42557268-943551c8-8520-11e8-9c38-e1c518cd6ed3.jpg)
+
+其中在整个微服务中的定位：
+![avatar](https://user-images.githubusercontent.com/1064859/42986178-32b3d7cc-8c27-11e8-9dd8-d216fc1bb962.png)
+
+
+现在针对现有工程进行说明解释：

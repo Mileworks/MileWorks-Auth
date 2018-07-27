@@ -119,10 +119,10 @@ MileWorks-Auth
 
 ### 测试对应的API ：  
 - SignUp :
- ![avatar](https://github.com/Mileworks/MileWorks-Auth/blob/master/1.png)
+ ![avatar](1.png)
 
 - Login
- ![image](https://github.com/Mileworks/MileWorks-Auth/blob/master/2.png)
+ ![image](2.png)
 
 
 

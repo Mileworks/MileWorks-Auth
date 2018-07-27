@@ -55,7 +55,7 @@ MileWorks-Auth
 
 ### 针对每块核心功能做详细介绍:  
 
-**Note: 现有功能预览**
+>Note: 现有功能预览
 - 构建API 通过用户名、邮箱、密码去注册新用户。
 - 构建API 通过用户名、邮箱、密码去登陆。通过`校验`用户验证信息，API能生成`JWT授权`信息,并且返回值中返回相应token。
   客户端下次会将登陆成功返回的jwt token保存到本地，在每次请求访问受保护资源的时候在认证头部中`Authorization header`中带上`JWT token`信息。
@@ -69,7 +69,7 @@ MileWorks-Auth
 
 注意：项目相关注解不再一一解释，自行找百度君。
 
-### 针对系统中关键部门做解释：
+### 针对系统中关键部分做解释：
 1. SecurityConfig : 整个工程的安全配置类  
    其中几个用到的关键注解和类：  
 
@@ -119,4 +119,27 @@ MileWorks-Auth
 
 ### 测试对应的API ：  
 - SignUp :
+ ![avatar](https://github.com/Mileworks/MileWorks-Auth/blob/master/1.png)
+
 - Login
+ ![image](https://github.com/Mileworks/MileWorks-Auth/blob/master/2.png)
+
+
+
+### 运行服务 ：
+
+运行spring boot app 执行下面命令，然后服务启动端口在5000。
+
+```shell
+    mvn spring-boot:run
+```
+或者执行
+```shell
+    mvn package
+    java -jar target/MileWorks-Auth-0.0.1-SNAPSHOT.jar
+```
+在数据库中添加授权角色`USER`和`ADMIN`，新用户默认分配`ROLE_USER`
+```database
+    INSERT INTO roles(name) VALUES('ROLE_USER');
+    INSERT INTO roles(name) VALUES('ROLE_ADMIN');
+```

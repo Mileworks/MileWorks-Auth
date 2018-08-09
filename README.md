@@ -6,7 +6,7 @@
 前期研究有代表性文章：
 - [https://www.renren.io/guide](https://www.renren.io/guide)
 - [https://segmentfault.com/a/1190000009164779](https://segmentfault.com/a/1190000009164779)
--  [http://blueskykong.com/2017/10/19/security1/](http://blueskykong.com/2017/10/19/security1/)
+- [http://blueskykong.com/2017/10/19/security1/](http://blueskykong.com/2017/10/19/security1/)
 - [https://blog.csdn.net/u012702547/article/details/54319508](Spring security相关)
 
 主流现在包括Java 、Go 语言中涉及Token相关的问题都会于JWT相关联处理。针对JWT相关的教程参考如下：  
